@@ -37,6 +37,11 @@ import static java.util.Arrays.asList;
         public void onPublish(InterceptPublishMessage msg) {
             System.out.println("Received on topic: " + msg.getTopicName() + " content: " + new String(msg.getPayload().array()));
         }
+
+        @Override
+        public void onDenyPublish(InterceptPublishMessage msg) {
+
+        }
     }
 
     public static void main(String[] args) throws InterruptedException, IOException {

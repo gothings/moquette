@@ -63,6 +63,12 @@ public class BrokerInterceptorTest {
         public void onUnsubscribe(InterceptUnsubscribeMessage msg) {
             n.set(80);
         }
+
+        @Override
+        public void onDenyPublish(InterceptPublishMessage msg) {
+            // not used
+        }
+
     }
 
     private static final BrokerInterceptor interceptor = new BrokerInterceptor(Arrays.<InterceptHandler>asList(new MockObserver()));

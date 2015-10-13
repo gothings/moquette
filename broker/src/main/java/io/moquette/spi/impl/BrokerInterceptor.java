@@ -106,4 +106,16 @@ final class BrokerInterceptor implements Interceptor {
             });
         }
     }
+
+    @Override
+    public void notifyPublishNotAuthorized(final PublishMessage msg, final String clientID) {
+        for (final InterceptHandler handler : this.handlers) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    handler.onDenyPublish(new InterceptPublishMessage(msg, clientID));
+                }
+            });
+        }
+    }
 }

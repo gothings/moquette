@@ -325,6 +325,7 @@ public class ProtocolProcessor {
         String user = NettyUtils.userName(channel);
         if (!m_authorizator.canWrite(topic, user, clientID)) {
             LOG.debug("topic {} doesn't have write credentials", topic);
+            m_interceptor.notifyPublishNotAuthorized(msg, clientID);
             return;
         }
         final AbstractMessage.QOSType qos = msg.getQos();
