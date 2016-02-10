@@ -640,6 +640,7 @@ public class ProtocolProcessor {
             forwardPublishWill(will, clientID);
             m_willStore.remove(clientID);
         }
+		m_interceptor.notifyClientDisconnected(clientID);
     }
     
     /**
